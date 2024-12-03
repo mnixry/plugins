@@ -417,7 +417,7 @@ class UIHooks(idaapi.UI_Hooks):
             return
         func = idaapi.get_func(ea)
         if func and func.start_ea in self.plugin.function_dict:
-            if self.current_func != func:
+            if not self.current_func or self.current_func != func:
                 f = self.plugin.function_dict[func.start_ea]
                 self.plugin.viewer.update(f)
                 self.current_func = func
